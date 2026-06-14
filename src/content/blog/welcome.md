@@ -1,15 +1,12 @@
 ---
-title: Welcome
-description: A first note about why this blog exists.
+title: Hello World
+description: Why does this blog exist?
 pubDate: 2026-06-14
 ---
 
-This is the first post on my blog. I made this place to write down things I find
-interesting — usually something I learned the hard way and don't want to forget.
-
-Posts here are just Markdown files. To publish a new one I add a file to
-`src/content/blog/`, give it a title and date, and write. That's the whole
-workflow — no template to copy, no code to touch.
+This is the first post on my blog. I'll probably use it to write about things
+that I interested in. These topics typically incldue things that involve computers
+or mathematics. I am especially interested in the intersection of these fields. 
 
 > Writing is nature's way of letting you know how sloppy your thinking is.
 

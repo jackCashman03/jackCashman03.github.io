@@ -2,6 +2,7 @@
 title: Code, Math, and Images — a feature tour
 description: A cheat-sheet post showing how to use code blocks, LaTeX, and pictures.
 pubDate: 2026-06-13
+draft: true
 ---
 
 This post does double duty: it's a demo and a reference. Keep it around (or delete
