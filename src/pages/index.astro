@@ -1,0 +1,49 @@
+---
+import { getCollection } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import FormattedDate from '../components/FormattedDate.astro';
+import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
+
+// All non-draft posts, newest first.
+const posts = (await getCollection('blog', ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <BaseHead title={undefined} description={SITE_DESCRIPTION} />
+  </head>
+  <body>
+    <div class="wrapper">
+      <Header />
+      <main>
+        <!-- Short intro. Edit this freely — it's just markup. -->
+        <section class="intro">
+          <p>
+            Hi, I'm {SITE_TITLE}. This is where I write about things I find
+            interesting — software, ideas, and whatever else catches my
+            attention.
+          </p>
+        </section>
+
+        <ul class="post-list">
+          {
+            posts.map((post) => (
+              <li>
+                <a href={`/blog/${post.id}/`}>
+                  <span class="post-title">{post.data.title}</span>
+                  <FormattedDate date={post.data.pubDate} />
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

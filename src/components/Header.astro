@@ -1,0 +1,17 @@
+---
+import { SITE_TITLE } from '../consts';
+import ThemeToggle from './ThemeToggle.astro';
+
+// Highlight the current nav item.
+const path = Astro.url.pathname;
+const isHome = path === '/' || path === '';
+---
+
+<header class="site-header">
+  <a class="brand" href="/">{SITE_TITLE}</a>
+  <nav>
+    <a href="/" aria-current={isHome ? 'page' : undefined}>Writing</a>
+    <a href="/rss.xml">RSS</a>
+    <ThemeToggle />
+  </nav>
+</header>
