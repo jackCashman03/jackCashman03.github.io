@@ -7,6 +7,11 @@ on:
   # ...and allow manual runs from the Actions tab.
   workflow_dispatch:
 
+# Opt every JS-based action (incl. setup-node used inside withastro/action)
+# into the Node.js 24 runtime ahead of GitHub's forced switch.
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 # Permissions the GitHub Pages deploy needs.
 permissions:
   contents: read
@@ -23,11 +28,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
       - name: Build Astro site
         uses: withastro/action@v3
+        with:
+          # Astro 6 requires Node >=22.12. The action defaults to Node 20
+          # (it does NOT read .nvmrc), so pin it explicitly here.
+          node-version: 22
         # withastro/action installs deps, runs `astro build`, and uploads the
-        # site artifact. It reads the Node version from .nvmrc automatically.
+        # site artifact.
 
   deploy:
     needs: build
